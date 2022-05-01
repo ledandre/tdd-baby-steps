@@ -18,8 +18,8 @@ group 'com.github.ledandre'
 version '1.0.0-SNAPSHOT'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 compileJava {
@@ -29,4 +29,11 @@ compileJava {
 
 compileTestJava {
     options.encoding = 'UTF-8'
+}
+
+test {
+	useJUnitPlatform()
+	afterTest { descriptor, result ->
+		println "\n[$descriptor.classDisplayName.$descriptor.name] > [$descriptor.displayName]: $result.resultType"
+	}
 }
